@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carousel Demo Page</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/carousel.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <script type="text/javascript" src="js/carousel.js"></script>
+</head>
+<body>
+    <h1 class="Title">Carousel Demo Page</h1>
+    <div id="my-carousel"></div>
+    <div id="my-carousel2"></div>
+    <script type="text/javascript">  
+
+    var firstCarousel = {
+        container: "my-carousel",
+        title: 'Fresh and just uploaded Content',
+        subtitle: "Lorem Ipsum Neque porro quisquam est qui dolorem",
+        fetchCards: function(chunkSize){
+            
+            let cont = document.getElementById(firstCarousel.container);
+
+            cont.innerHTML += `
+                <div id="my-carousel_container">
+                    <span class="material-icons iconLamp">
+                        emoji_objects
+                    </span>
+                    <div id="my-carousel_content">
+                        <h1 id="my-carousel_content_title">${firstCarousel.title}</h1>
+                        <p id="my-carousel_content_subtitle">${firstCarousel.subtitle}</p>
+                    </div>
+                </div>
+                <ul class="cards_container"></ul>
+                `
+
+            var data = fetch('../js/cardObject.json')
+            .then(response => {
+                return response.json();
+            }).then(data => {
+                insertData(data);
+            }).catch(err => console.log(err));
+            
+            function insertData(data){
+
+                let list = document.querySelector('.cards_container');
+            
+                for(i = 0; i < Math.random() * (data.length[4], data.length); i++){
+                    list.innerHTML += `
+                        <div class="cards_content">
+                            <figure class="cards_content_figure">
+                                <img class="cards_content_figure_img" src=${data[i].image} />
+                                <figcaption class="cards_content_figure_figcaption">${data[i].type}</figcaption>
+                                <figcaption class="cards_content_figure_figcaption_time">${(data[i].duration / 60)}</figcaption>
+                            </figure>
+                            <p class="cards_content_title">${data[i].title}</p>
+                        </div>
+                    `
+                }
+                list.innerHTML += `
+                    <div class="nextChunk">
+                        <span class="material-icons">
+                            keyboard_arrow_right
+                        </span>
+                    </div>
+                `
+                const newCarousel = document.querySelector('.nextChunk');
+                newCarousel.addEventListener('click', () =>{
+                    var carousel2 = new Carousel(secondCarousel, secondCarousel.fetchCards())
+                    cont.style.display = 'none'
+                });
+            }
+        }      
+    };
+
+    var carousel1 = new Carousel(firstCarousel, firstCarousel.fetchCards());
+
+    var secondCarousel = {
+        container: "my-carousel2",
+        title: 'Just Some other older content',
+        subtitle: "Lorem Ipsum Neque porro quisquam est qui dolorem.",
+        fetchCards: function(chunkSize){
+
+            var data = fetch('../js/cardObject.json')
+            .then(response => {
+                return response.json();
+            }).then(data => {
+                insertData(data);
+            }).catch(err => console.log(err));
+            
+            let cont = document.getElementById(secondCarousel.container);
+
+            cont.innerHTML += `
+                <div id="my-carousel2_container">
+                    <span class="material-icons iconLamp">
+                        emoji_objects
+                    </span>
+                    <div id="my-carousel2_content">
+                        <h1 id="my-carousel2_content_title">${secondCarousel.title}</h1>
+                        <p id="my-carousel2_content_subtitle">${secondCarousel.subtitle}</p>
+                    </div>
+                </div>
+                <ul class="cards_container"></ul>
+                `
+
+            var data = fetch('../js/cardObject.json')
+            .then(response => {
+                return response.json();
+            }).then(data => {
+                insertData(data);
+            }).catch(err => console.log(err));
+            
+            function insertData(data){
+
+                let list = document.querySelector('.cards_container');
+            
+                for(i = 0; i < Math.random() * (data.length[4], data.length); i++){
+                    list.innerHTML += `
+                        <div class="cards_content">
+                            <figure class="cards_content_figure">
+                                <img class="cards_content_figure_img" src=${data[i].image} />
+                                <figcaption class="cards_content_figure_figcaption">${data[i].type}</figcaption>
+                                <figcaption class="cards_content_figure_figcaption_time">${(data[i].duration / 60)}</figcaption>
+                            </figure>
+                            <p class="cards_content_title">${data[i].title}</p>
+                        </div>
+                    `
+                }
+                list.innerHTML += `
+                    <div class="nextChunk">
+                        <span class="material-icons">
+                            keyboard_arrow_right
+                        </span>
+                    </div>
+                `
+                const newCarousel = document.querySelector('.nextChunk');
+                newCarousel.addEventListener('click', () =>{
+                    var carousel2 = new Carousel(secondCarousel, secondCarousel.fetchCards())
+                    cont.style.display = 'none'
+                });
+            }
+        }      
+    };
+    </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+[
+    {
+        "image": "https://source.unsplash.com/collection/190727/1600x900",
+        "type": "elearning",
+        "duration": 3600,
+        "title": "Welcome To Effective Time Management",
+        "cardinality": "single"
+    },
+    {
+        "image": "https://source.unsplash.com/1600x900/?nature,water",
+        "type": "video",
+        "duration": 4200,
+        "title": "Choosing the Best Audio Player Software for your Computer",
+        "cardinality": "single"
+    },
+    {
+        "image": "https://source.unsplash.com/1600x900/?nature,water",
+        "type": "learning plan",
+        "duration": 4200,
+        "title": "Choosing the Best Audio Player Software for your Computer",
+        "cardinality": "collection"
+    },
+    {
+        "image": "https://source.unsplash.com/1600x900/?nature,water",
+        "type": "playlist",
+        "duration": 4200,
+        "title": "Choosing the Best Audio Player Software for your Computer",
+        "cardinality": "collection"
+    },
+    {
+        "image": "https://source.unsplash.com/1600x900/?nature,water",
+        "type": "video",
+        "duration": 4200,
+        "title": "Choosing the Best Audio Player Software for your Computer",
+        "cardinality": "single"
+    },
+    {
+        "image": "https://source.unsplash.com/1600x900/?nature,water",
+        "type": "ELearning",
+        "duration": 4200,
+        "title": "Choosing the Best Audio Player Software for your Computer",
+        "cardinality": "collection"
+    },
+    {
+        "image": "https://source.unsplash.com/collection/190727/1600x900",
+        "type": "elearning",
+        "duration": 3600,
+        "title": "Welcome To Effective Time Management",
+        "cardinality": "single"
+    },
+    {
+        "image": "https://source.unsplash.com/1600x900/?nature,water",
+        "type": "video",
+        "duration": 4200,
+        "title": "Choosing the Best Audio Player Software for your Computer",
+        "cardinality": "single"
+    },
+    {
+        "image": "https://source.unsplash.com/1600x900/?nature,water",
+        "type": "learning plan",
+        "duration": 4200,
+        "title": "Choosing the Best Audio Player Software for your Computer",
+        "cardinality": "collection"
+    },
+    {
+        "image": "https://source.unsplash.com/1600x900/?nature,water",
+        "type": "playlist",
+        "duration": 4200,
+        "title": "Choosing the Best Audio Player Software for your Computer",
+        "cardinality": "collection"
+    },
+    {
+        "image": "https://source.unsplash.com/1600x900/?nature,water",
+        "type": "video",
+        "duration": 4200,
+        "title": "Choosing the Best Audio Player Software for your Computer",
+        "cardinality": "single"
+    },
+    {
+        "image": "https://source.unsplash.com/1600x900/?nature,water",
+        "type": "ELearning",
+        "duration": 4200,
+        "title": "Choosing the Best Audio Player Software for your Computer",
+        "cardinality": "collection"
+    },
+    {
+        "image": "https://source.unsplash.com/collection/190727/1600x900",
+        "type": "elearning",
+        "duration": 3600,
+        "title": "Welcome To Effective Time Management",
+        "cardinality": "single"
+    },
+    {
+        "image": "https://source.unsplash.com/1600x900/?nature,water",
+        "type": "video",
+        "duration": 4200,
+        "title": "Choosing the Best Audio Player Software for your Computer",
+        "cardinality": "single"
+    }
+]
