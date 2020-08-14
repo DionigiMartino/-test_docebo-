@@ -62,6 +62,7 @@ body {
   width: 85vw;
   height: 35vh;
   display: flex;
+  flex-direction: column;
   padding: 20px;
   margin: 0 auto;
 }
@@ -91,6 +92,12 @@ body {
   color: #999;
 }
 
+.placeholder {
+  background-color: #999;
+  width: 90%;
+  margin-left: 5%;
+}
+
 .cards_container {
   display: flex;
   flex-direction: row;
@@ -98,8 +105,21 @@ body {
   overflow-y: hidden;
   overflow-x: auto;
   flex: 0 0 auto;
+  padding: 10px;
 }
 .cards_container::-webkit-scrollbar {
+  display: none;
+}
+
+.cards_container2 {
+  display: flex;
+  flex-direction: row;
+  padding-inline-start: 0;
+  overflow-y: hidden;
+  overflow-x: auto;
+  flex: 0 0 auto;
+}
+.cards_container2::-webkit-scrollbar {
   display: none;
 }
 
@@ -107,12 +127,13 @@ body {
   width: 200px;
   height: 275px;
   background-color: white;
-  border: 0.5px solid #999;
   display: flex;
   flex-direction: column;
+  border: 0.5px solid #999;
   transition: transform 0.5s;
   cursor: pointer;
   margin: 0 2%;
+  position: relative;
 }
 .cards_content:first-of-type {
   margin: 0 2% 0 0;
@@ -157,15 +178,30 @@ body {
   text-transform: uppercase;
   font-weight: bold;
 }
-.cards_content_title {
+.cards_content_titleHolder {
+  height: 160px;
+  position: absolute;
+  top: 115px;
+  z-index: 999;
+  width: 90%;
+}
+.cards_content_titleHolder_title {
   color: #3e578b;
   font-weight: bold;
   text-transform: uppercase;
   font-size: 12px;
   padding: 10px;
 }
-.cards_content:hover {
-  transform: scale(1.1);
+.cards_content_collection_display {
+  width: 95%;
+  height: 15px;
+  background-color: #fff;
+  position: absolute;
+  left: 50%;
+  bottom: -3%;
+  transform: translate(-50%, -3%);
+  border: 0.5px solid #999;
+  z-index: -1;
 }
 
 .nextChunk {
@@ -181,6 +217,13 @@ body {
 }
 .nextChunk:hover {
   transform: translateX(10px);
+}
+
+.active {
+  background: rgba(255, 255, 255, 0.3);
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+  transform: scale(1);
 }
 
 /*# sourceMappingURL=carousel.css.map */

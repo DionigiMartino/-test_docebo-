@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carousel Demo Page</title>
+    <title>Carousel Demo Page -</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/carousel.css">
@@ -16,13 +16,23 @@
     <div id="my-carousel2"></div>
     <script type="text/javascript">  
 
+    // This is the first carousel
+
     var firstCarousel = {
+        // Here I've given the value of the container to get, the title and the 
+        // subtitle
+
         container: "my-carousel",
         title: 'Fresh and just uploaded Content',
         subtitle: "Lorem Ipsum Neque porro quisquam est qui dolorem",
-        fetchCards: function(chunkSize){
-            
+
+        fetchCards: function(){
+            // I take the value of cont based on the Carousel.class container value
+
             let cont = document.getElementById(firstCarousel.container);
+
+            // Setting then the innerHtml of the initial Container
+            // Giving the value of title and subtitle
 
             cont.innerHTML += `
                 <div id="my-carousel_container">
@@ -34,8 +44,12 @@
                         <p id="my-carousel_content_subtitle">${firstCarousel.subtitle}</p>
                     </div>
                 </div>
-                <ul class="cards_container"></ul>
+                <ul class="cards_container scroll"></ul>
                 `
+
+            // Then i proceed to fetch the API, inside a JSON file in the project, 
+            // which will return the json documentation, proceeding then to put them
+            // inside a parameter of the insertData function
 
             var data = fetch('../js/cardObject.json')
             .then(response => {
@@ -44,22 +58,71 @@
                 insertData(data);
             }).catch(err => console.log(err));
             
-            function insertData(data){
+            // This function will create a promise to put a fake delay between the calls
+
+            function sleep(ms) {
+                return new Promise(resolve => {
+                    setTimeout(resolve, ms)
+                })
+            }
+
+            // Now creating an async function, who shall wait the data to proceed
+
+            async function insertData(data){
 
                 let list = document.querySelector('.cards_container');
-            
-                for(i = 0; i < Math.random() * (data.length[4], data.length); i++){
+
+                // Creating the placeholder for the cards
+
+                let placeholder = `
+                    <div class="cards_content">
+                        <figure class="cards_content_figure placeholder"></figure>
+                        <div class="cards_content_titleHolder">
+                            <p class="cards_content_titleHolder_title placeholder"></p>
+                        </div>
+                    </div>`
+                ;
+
+                // Here it will create placeholder for every element in the json 
+
+                for(i = 0; i < data.length; i++) {
+                    list.innerHTML += placeholder;
+                }
+
+                // these variable are used to create a random delay 
+
+                let min = 1000;
+                let max = 5000;
+
+                // until this function it's not ended, the cards will not be displayed
+
+                await sleep(Math.random() * (max - min))
+
+                // Now i can proceed with the cards
+
+                list.innerHTML = ''
+
+                // Setting a for loop, the cards displayed will be randomly selected 
+                // by the Math.random() method
+
+                for(i = 0; i < Math.random() * (data.length[1], data.length); i++){
                     list.innerHTML += `
                         <div class="cards_content">
                             <figure class="cards_content_figure">
                                 <img class="cards_content_figure_img" src=${data[i].image} />
                                 <figcaption class="cards_content_figure_figcaption">${data[i].type}</figcaption>
-                                <figcaption class="cards_content_figure_figcaption_time">${(data[i].duration / 60)}</figcaption>
+                                <figcaption class="cards_content_figure_figcaption_time">${formatTime(data[i].duration)}</figcaption>
                             </figure>
-                            <p class="cards_content_title">${data[i].title}</p>
+                            <div class="cards_content_titleHolder">
+                                <p class="cards_content_titleHolder_title">${data[i].title}</p>
+                            </div>
+                            <div class=${data[i].cardinality == "collection" ? "cards_content_collection_display" : "cards_content_collection_noDisplay"}></div>
                         </div>
                     `
                 }
+
+                // This will be used to go to the nextChunk of cards
+
                 list.innerHTML += `
                     <div class="nextChunk">
                         <span class="material-icons">
@@ -67,14 +130,24 @@
                         </span>
                     </div>
                 `
+
+                // This will create the second carousel with a click event 
+
                 const newCarousel = document.querySelector('.nextChunk');
                 newCarousel.addEventListener('click', () =>{
                     var carousel2 = new Carousel(secondCarousel, secondCarousel.fetchCards())
-                    cont.style.display = 'none'
+                    cont.style.display = 'none';
+
+                    // Withi this i call the scrollHorizontally function inside the Carousel.js
+                    scrollHorizontally()
                 });
             }
         }      
     };
+
+    // Now i call the carousel class, to display it on the DOM
+
+    // The same code is here!
 
     var carousel1 = new Carousel(firstCarousel, firstCarousel.fetchCards());
 
@@ -82,15 +155,8 @@
         container: "my-carousel2",
         title: 'Just Some other older content',
         subtitle: "Lorem Ipsum Neque porro quisquam est qui dolorem.",
-        fetchCards: function(chunkSize){
+        fetchCards: function(){
 
-            var data = fetch('../js/cardObject.json')
-            .then(response => {
-                return response.json();
-            }).then(data => {
-                insertData(data);
-            }).catch(err => console.log(err));
-            
             let cont = document.getElementById(secondCarousel.container);
 
             cont.innerHTML += `
@@ -103,7 +169,7 @@
                         <p id="my-carousel2_content_subtitle">${secondCarousel.subtitle}</p>
                     </div>
                 </div>
-                <ul class="cards_container"></ul>
+                <ul class="cards_container2 scroll"></ul>
                 `
 
             var data = fetch('../js/cardObject.json')
@@ -112,38 +178,54 @@
             }).then(data => {
                 insertData(data);
             }).catch(err => console.log(err));
-            
-            function insertData(data){
 
-                let list = document.querySelector('.cards_container');
+            function sleep(ms) {
+                return new Promise(resolve => {
+                    setTimeout(resolve, ms)
+                })
+            }
             
-                for(i = 0; i < Math.random() * (data.length[4], data.length); i++){
+            async function insertData(data){
+                let list = document.querySelector('.cards_container2');
+
+                let placeholder = `
+                    <div class="cards_content">
+                        <figure class="cards_content_figure placeholder"></figure>
+                        <p class="cards_content_title placeholder"></p>
+                    </div>`
+                ;
+
+                for(i = 0; i < data.length; i++) {
+                    list.innerHTML += placeholder;
+                }
+
+                let min = 1000;
+                let max = 5000;
+
+                await sleep(Math.random() * (max - min))
+
+                list.innerHTML = '';
+            
+                for(i = 0; i < Math.random() * (data.length[1], data.length); i++){
                     list.innerHTML += `
                         <div class="cards_content">
                             <figure class="cards_content_figure">
                                 <img class="cards_content_figure_img" src=${data[i].image} />
                                 <figcaption class="cards_content_figure_figcaption">${data[i].type}</figcaption>
-                                <figcaption class="cards_content_figure_figcaption_time">${(data[i].duration / 60)}</figcaption>
+                                <figcaption class="cards_content_figure_figcaption_time">${formatTime(data[i].duration)}</figcaption>
                             </figure>
-                            <p class="cards_content_title">${data[i].title}</p>
+                            <div class="cards_content_titleHolder">
+                                <p class="cards_content_titleHolder_title">${data[i].title}</p>
+                            </div>
+                            <div class=${data[i].cardinality == "collection" ? "cards_content_collection_display" : "cards_content_collection_noDisplay"}></div>
                         </div>
                     `
                 }
-                list.innerHTML += `
-                    <div class="nextChunk">
-                        <span class="material-icons">
-                            keyboard_arrow_right
-                        </span>
-                    </div>
-                `
-                const newCarousel = document.querySelector('.nextChunk');
-                newCarousel.addEventListener('click', () =>{
-                    var carousel2 = new Carousel(secondCarousel, secondCarousel.fetchCards())
-                    cont.style.display = 'none'
-                });
             }
         }      
     };
+
+    scrollHorizontally();
     </script>
 </body>
 </html>
