@@ -226,4 +226,11 @@ body {
   transform: scale(1);
 }
 
+@media (max-width: 550px) {
+  #my-carousel_container,
+#my-carousel2_container {
+    width: 95vw;
+  }
+}
+
 /*# sourceMappingURL=carousel.css.map */
