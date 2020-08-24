@@ -16,6 +16,10 @@
     <div id="my-carousel2"></div>
     <script type="text/javascript">  
 
+    function loadData(){
+        
+    }
+
     // This is the first carousel
 
     var firstCarousel = {
@@ -51,7 +55,7 @@
             // which will return the json documentation, proceeding then to put them
             // inside a parameter of the insertData function
 
-            var data = fetch('../js/cardObject.json')
+            var data = fetch('https://raw.githubusercontent.com/DionigiMartino/-test_docebo-/master/js/cardObject.json')
             .then(response => {
                 return response.json();
             }).then(data => {
@@ -172,7 +176,7 @@
                 <ul class="cards_container2 scroll"></ul>
                 `
 
-            var data = fetch('../js/cardObject.json')
+            var data = fetch('https://raw.githubusercontent.com/DionigiMartino/-test_docebo-/master/js/cardObject.json')
             .then(response => {
                 return response.json();
             }).then(data => {
